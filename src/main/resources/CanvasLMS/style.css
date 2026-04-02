@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container, .page-container {
+    width: 450px;
+    margin: 60px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+button {
+    width: 95%;
+    padding: 12px;
+    background-color: #b31b1b;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #8f1515;
+}
+
+#error-message {
+    color: red;
+    margin-top: 12px;
+}
+
+nav {
+    background-color: #b31b1b;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+}
+
+ul {
+    text-align: left;
+    padding-left: 40px;
+}
+
+.card {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: left;
+}

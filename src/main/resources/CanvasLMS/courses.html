@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Canvas LMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkLogin()">
+<nav>
+    <a id="navDashboard" href="dashboard.html">Dashboard</a>
+    <a id="navCourses" href="courses.html">Courses</a>
+    <a id="navAssignments" href="assignments.html">Assignments</a>
+    <a id="navCalendar" href="calendar.html">Calendar</a>
+    <a id="navInbox" href="inbox.html">Inbox</a>
+    <a id="navProfile" href="profile.html">Profile</a>
+    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
+</nav>
+
+<div class="page-container">
+    <ul id="coursesList">
+        <li>Human Computer Interaction</li>
+        <li>Data Engineering</li>
+        <li>Software Testing</li>
+        <li>Computer Security</li>
+        <li>Operating Systems</li>
+    </ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

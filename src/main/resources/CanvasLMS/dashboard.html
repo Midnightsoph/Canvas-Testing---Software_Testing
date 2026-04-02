@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Canvas LMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkLogin()">
+<nav>
+    <a id="navDashboard" href="dashboard.html">Dashboard</a>
+    <a id="navCourses" href="courses.html">Courses</a>
+    <a id="navAssignments" href="assignments.html">Assignments</a>
+    <a id="navCalendar" href="calendar.html">Calendar</a>
+    <a id="navInbox" href="inbox.html">Inbox</a>
+    <a id="navProfile" href="profile.html">Profile</a>
+    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
+</nav>
+
+<div class="page-container">
+    <h1 id="dashboardTitle">Dashboard</h1>
+    <p>Welcome to your student dashboard.</p>
+
+    <div class="card">
+        <h3>Current Courses</h3>
+        <p>Human Computer Interaction, Data Engineering, Software Testing, Operating Systems</p>
+    </div>
+
+    <div class="card">
+        <h3>Inbox</h3>
+        <p>You have 10 new messages.</p>
+    </div>
+
+    <div class="card">
+        <h3>Profile</h3>
+        <p>Manage your account settings.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

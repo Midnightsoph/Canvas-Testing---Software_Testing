@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox - Canvas LMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkLogin()">
+<nav>
+    <a id="navDashboard" href="dashboard.html">Dashboard</a>
+    <a id="navCourses" href="courses.html">Courses</a>
+    <a id="navAssignments" href="assignments.html">Assignments</a>
+    <a id="navCalendar" href="calendar.html">Calendar</a>
+    <a id="navInbox" href="inbox.html">Inbox</a>
+    <a id="navProfile" href="profile.html">Profile</a>
+    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
+</nav>
+
+<div class="page-container">
+    <h1 id="inboxTitle">Inbox</h1>
+    <ul id="inboxList">
+        <li>Professor: Reminder about assignment deadline</li>
+        <li>Advisor: Meeting this Friday</li>
+        <li>Classmate: Group project update</li>
+    </ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
