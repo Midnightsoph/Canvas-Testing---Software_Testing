@@ -30,9 +30,23 @@ public class InboxTests extends BaseTest {
         InboxPage inboxPage = new InboxPage(driver);
         Assert.assertTrue(inboxPage.areMessagesDisplayed());
     }
+
     @Test
     public void verifyInboxContainsProfessorMessage() {
         InboxPage inboxPage = new InboxPage(driver);
         Assert.assertTrue(inboxPage.getInboxText().contains("Professor"));
+    }
+
+    @Test
+    public void verifyInboxPageUrl() {
+        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        Assert.assertTrue(currentUrl.contains("inbox"), "URL should contain 'inbox'");
+    }
+
+    @Test
+    public void verifyInboxIsNotEmpty() {
+        InboxPage inboxPage = new InboxPage(driver);
+        String text = inboxPage.getInboxText();
+        Assert.assertFalse(text.isEmpty(), "Inbox should not be empty");
     }
 }

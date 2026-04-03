@@ -30,9 +30,23 @@ public class CalendarTests extends BaseTest {
         CalendarPage calendarPage = new CalendarPage(driver);
         Assert.assertTrue(calendarPage.isCalendarMessageDisplayed());
     }
+
     @Test
     public void verifyCalendarTitleTextIsCorrect() {
         CalendarPage calendarPage = new CalendarPage(driver);
         Assert.assertEquals(calendarPage.getCalendarTitleText(), "Calendar");
+    }
+
+    @Test
+    public void verifyCalendarPageUrl() {
+        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        Assert.assertTrue(currentUrl.contains("calendar"), "URL should contain 'calendar'");
+    }
+
+    @Test
+    public void verifyCalendarContentIsNotEmpty() {
+        CalendarPage calendarPage = new CalendarPage(driver);
+        String text = driver.getPageSource();
+        Assert.assertFalse(text.isEmpty(), "Calendar page content should not be empty");
     }
 }

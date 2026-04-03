@@ -14,15 +14,15 @@ public class CoursesTests extends BaseTest {
         driver.get(loginPageUrl);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login("student@test.com", "test123");
-        pause(3);
+        pause(2);
         driver.get(coursesUrl);
-        pause(3);
+        pause(2);
     }
 
     @Test
     public void verifyCoursesPageIsDisplayed() {
         CoursesPage coursesPage = new CoursesPage(driver);
-        Assert.assertTrue(coursesPage.isCoursesPageDisplayed());
+        Assert.assertTrue(coursesPage.getCoursesText().length() > 0);
     }
 
     @Test
@@ -30,6 +30,7 @@ public class CoursesTests extends BaseTest {
         CoursesPage coursesPage = new CoursesPage(driver);
         Assert.assertTrue(coursesPage.areCollegeClassesDisplayed());
     }
+
     @Test
     public void verifyCoursesListContainsOperatingSystems() {
         CoursesPage coursesPage = new CoursesPage(driver);
@@ -40,5 +41,11 @@ public class CoursesTests extends BaseTest {
     public void verifyCourseCountIsFive() {
         CoursesPage coursesPage = new CoursesPage(driver);
         Assert.assertEquals(coursesPage.getCourseCount(), 5);
+    }
+
+    @Test
+    public void verifyCoursesPageUrl() {
+        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        Assert.assertTrue(currentUrl.contains("courses"), "URL should contain 'courses'");
     }
 }

@@ -36,9 +36,16 @@ public class ProfileSettingsTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         Assert.assertTrue(profilePage.isProfileEmailDisplayed());
     }
+
     @Test
     public void verifyProfileEmailTextIsCorrect() {
         ProfilePage profilePage = new ProfilePage(driver);
         Assert.assertEquals(profilePage.getProfileEmailText(), "Email: student@test.com");
+    }
+
+    @Test
+    public void verifyProfilePageUrl() {
+        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        Assert.assertTrue(currentUrl.contains("profile"), "URL should contain 'profile'");
     }
 }
