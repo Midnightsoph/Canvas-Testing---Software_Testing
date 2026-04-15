@@ -7,33 +7,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="checkLogin()">
-<nav>
-    <a id="navDashboard" href="dashboard.html">Dashboard</a>
-    <a id="navCourses" href="courses.html">Courses</a>
-    <a id="navAssignments" href="assignments.html">Assignments</a>
-    <a id="navCalendar" href="calendar.html">Calendar</a>
-    <a id="navInbox" href="inbox.html">Inbox</a>
-    <a id="navProfile" href="profile.html">Profile</a>
-    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
-</nav>
+<div class="app-layout">
+    <nav>
+        <div class="nav-brand">Canvas LMS</div>
+        <a id="navDashboard" href="dashboard.html">🏠 Dashboard</a>
+        <a id="navCourses" href="courses.html">📚 Courses</a>
+        <a id="navAssignments" href="assignments.html">📝 Assignments</a>
+        <a id="navCalendar" href="calendar.html">📅 Calendar</a>
+        <a id="navInbox" href="inbox.html">✉️ Inbox</a>
+        <a id="navProfile" href="profile.html">👤 Profile</a>
+        <a id="logoutLink" href="#" onclick="logout()">🚪 Logout</a>
+    </nav>
 
-<div class="page-container">
-    <h1 id="dashboardTitle">Dashboard</h1>
-    <p>Welcome to your student dashboard.</p>
+    <div class="main-content">
+        <div class="page-container dashboard-page">
+            <div class="page-header">
+                <h1 id="dashboardTitle">Dashboard</h1>
+                <p>Welcome back. Here is an overview of your academic activity.</p>
+            </div>
 
-    <div class="card">
-        <h3>Current Courses</h3>
-        <p>Human Computer Interaction, Data Engineering, Software Testing, Operating Systems</p>
-    </div>
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📚 Current Courses</h3>
+                    <p>Human Computer Interaction, Data Engineering, Software Testing, Operating Systems</p>
+                    <span class="badge">4 Active Courses</span>
+                </div>
 
-    <div class="card">
-        <h3>Inbox</h3>
-        <p>You have 10 new messages.</p>
-    </div>
+                <div class="card">
+                    <h3>📝 Assignments</h3>
+                    <p>Check upcoming work, submit assignments, and stay on track.</p>
+                    <span class="badge">5 Assignments Listed</span>
+                </div>
 
-    <div class="card">
-        <h3>Profile</h3>
-        <p>Manage your account settings.</p>
+                <div class="card">
+                    <h3>✉️ Inbox</h3>
+                    <p>You have 2 new messages from your professor and advisor.</p>
+                    <span class="badge">2 New Messages</span>
+                </div>
+
+                <div class="card">
+                    <h3>👤 Profile Overview</h3>
+                    <p><strong>Name:</strong> Student User</p>
+                    <p><strong>Email:</strong> student@test.com</p>
+                    <p><strong>Major:</strong> Software Engineering</p>
+                    <a id="dashboardProfileLink" href="profile.html" style="display:inline-block; margin-top:10px; text-decoration:none; font-weight:bold;">Open Profile</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

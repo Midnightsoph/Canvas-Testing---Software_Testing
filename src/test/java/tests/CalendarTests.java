@@ -10,43 +10,56 @@ import pages.LoginPage;
 public class CalendarTests extends BaseTest {
 
     @BeforeMethod
-    public void loginAndOpenCalendar() {
+    public void setup() {
         driver.get(loginPageUrl);
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "test123");
+        new LoginPage(driver).login("student@test.com", "test123");
         pause(3);
         driver.get(calendarUrl);
         pause(3);
     }
 
     @Test
-    public void verifyCalendarPageIsDisplayed() {
-        CalendarPage calendarPage = new CalendarPage(driver);
-        Assert.assertTrue(calendarPage.isCalendarPageDisplayed());
+    public void verifyCalendarDisplayed() {
+        Assert.assertTrue(new CalendarPage(driver).isCalendarPageDisplayed());
     }
 
     @Test
-    public void verifyCalendarMessageIsDisplayed() {
-        CalendarPage calendarPage = new CalendarPage(driver);
-        Assert.assertTrue(calendarPage.isCalendarMessageDisplayed());
+    public void verifyUserCanAddEvent() {
+        CalendarPage page = new CalendarPage(driver);
+        page.enterCalendarEvent("Capstone Presentation");
+        page.clickAddCalendarEvent();
+        pause(2);
+        Assert.assertEquals(page.getCalendarStatus(), "Event added successfully.");
     }
 
     @Test
-    public void verifyCalendarTitleTextIsCorrect() {
-        CalendarPage calendarPage = new CalendarPage(driver);
-        Assert.assertEquals(calendarPage.getCalendarTitleText(), "Calendar");
+    public void verifyAddedEventAppearsInList() {
+        CalendarPage page = new CalendarPage(driver);
+        page.enterCalendarEvent("Capstone Presentation");
+        page.clickAddCalendarEvent();
+        pause(2);
+        Assert.assertTrue(page.getCalendarEventListText().contains("Capstone Presentation"));
     }
 
     @Test
-    public void verifyCalendarPageUrl() {
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        Assert.assertTrue(currentUrl.contains("calendar"), "URL should contain 'calendar'");
+    public void verifyUserCanMarkLastEventImportant() {
+        CalendarPage page = new CalendarPage(driver);
+        page.enterCalendarEvent("Internship Interview");
+        page.clickAddCalendarEvent();
+        pause(2);
+        page.clickMarkImportant();
+        pause(2);
+        Assert.assertTrue(page.getCalendarEventListText().contains("Important: Internship Interview"));
     }
 
     @Test
-    public void verifyCalendarContentIsNotEmpty() {
-        CalendarPage calendarPage = new CalendarPage(driver);
-        String text = driver.getPageSource();
-        Assert.assertFalse(text.isEmpty(), "Calendar page content should not be empty");
+    public void verifyUserCanRemoveLastEvent() {
+        CalendarPage page = new CalendarPage(driver);
+        page.enterCalendarEvent("Practice Demo");
+        page.clickAddCalendarEvent();
+        pause(2);
+        page.clickRemoveLastEvent();
+        pause(2);
+        Assert.assertEquals(page.getCalendarStatus(), "Last event removed.");
     }
 }

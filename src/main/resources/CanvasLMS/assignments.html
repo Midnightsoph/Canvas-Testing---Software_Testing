@@ -7,24 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="checkLogin()">
-<nav>
-    <a id="navDashboard" href="dashboard.html">Dashboard</a>
-    <a id="navCourses" href="courses.html">Courses</a>
-    <a id="navAssignments" href="assignments.html">Assignments</a>
-    <a id="navCalendar" href="calendar.html">Calendar</a>
-    <a id="navInbox" href="inbox.html">Inbox</a>
-    <a id="navProfile" href="profile.html">Profile</a>
-    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
-</nav>
+<div class="app-layout">
+    <nav>
+        <div class="nav-brand">Canvas LMS</div>
+        <a id="navDashboard" href="dashboard.html">🏠 Dashboard</a>
+        <a id="navCourses" href="courses.html">📚 Courses</a>
+        <a id="navAssignments" href="assignments.html">📝 Assignments</a>
+        <a id="navCalendar" href="calendar.html">📅 Calendar</a>
+        <a id="navInbox" href="inbox.html">✉️ Inbox</a>
+        <a id="navProfile" href="profile.html">👤 Profile</a>
+        <a id="logoutLink" href="#" onclick="logout()">🚪 Logout</a>
+    </nav>
 
-<div class="page-container">
-    <h1 id="assignmentsTitle">Assignments</h1>
-    <ul id="assignmentsList">
-        <li>Software Testing Project</li>
-        <li>Database Schema Design</li>
-        <li>Calculus Homework 4</li>
-        <li>HCI Case Study</li>
-    </ul>
+    <div class="main-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1 id="assignmentsTitle">Assignments</h1>
+                <p>Track your upcoming coursework and submissions.</p>
+            </div>
+
+            <div class="list-card">
+                <ul id="assignmentsList">
+                    <li>Software Testing Final Project</li>
+                    <li>HCI Usability Review</li>
+                    <li>Computer Security Risk Report</li>
+                    <li>Data Engineering Pipeline Reflection</li>
+                    <li>Operating Systems Process Analysis</li>
+                </ul>
+            </div>
+
+            <div class="list-card" style="margin-top: 20px;">
+                <h3>Assignment Actions</h3>
+
+                <select id="assignmentSelect" style="width:100%; padding:12px; border-radius:10px; border:1px solid #c9d7ea; margin-bottom:12px;">
+                    <option value="">Select an assignment</option>
+                    <option value="Software Testing Final Project">Software Testing Final Project</option>
+                    <option value="HCI Usability Review">HCI Usability Review</option>
+                    <option value="Computer Security Risk Report">Computer Security Risk Report</option>
+                    <option value="Data Engineering Pipeline Reflection">Data Engineering Pipeline Reflection</option>
+                    <option value="Operating Systems Process Analysis">Operating Systems Process Analysis</option>
+                </select>
+
+                <textarea id="assignmentInput" rows="4" style="width:100%; padding:12px; border-radius:10px; border:1px solid #c9d7ea;" placeholder="Enter your submission"></textarea>
+
+                <button id="submitAssignmentButton" onclick="submitAssignment()">Submit Assignment</button>
+                <button id="markCompleteButton" onclick="markAssignmentComplete()" style="margin-top:10px;">Mark Complete</button>
+                <button id="clearAssignmentButton" onclick="clearAssignmentForm()" style="margin-top:10px;">Clear Form</button>
+
+                <p id="assignmentMessage"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>

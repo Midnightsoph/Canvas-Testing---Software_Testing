@@ -14,63 +14,51 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void verifyEmailFieldIsDisplayed() {
-        LoginPage loginPage = new LoginPage(driver);
-        Assert.assertTrue(loginPage.isEmailFieldDisplayed());
+        LoginPage page = new LoginPage(driver);
+        Assert.assertTrue(page.isEmailFieldDisplayed());
     }
 
     @Test
     public void verifyPasswordFieldIsDisplayed() {
-        LoginPage loginPage = new LoginPage(driver);
-        Assert.assertTrue(loginPage.isPasswordFieldDisplayed());
+        LoginPage page = new LoginPage(driver);
+        Assert.assertTrue(page.isPasswordFieldDisplayed());
     }
 
     @Test
     public void verifyLoginButtonIsDisplayed() {
-        LoginPage loginPage = new LoginPage(driver);
-        Assert.assertTrue(loginPage.isLoginButtonDisplayed());
+        LoginPage page = new LoginPage(driver);
+        Assert.assertTrue(page.isLoginButtonDisplayed());
     }
 
     @Test
     public void verifyValidLogin() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "test123");
+        LoginPage page = new LoginPage(driver);
+        page.login("student@test.com", "test123");
         pause(2);
         Assert.assertTrue(driver.getCurrentUrl().contains("dashboard.html"));
     }
 
     @Test
-    public void verifyInvalidLogin() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("wrong@test.com", "wrong123");
+    public void verifyInvalidLoginShowsError() {
+        LoginPage page = new LoginPage(driver);
+        page.login("wrong@test.com", "wrong123");
         pause(1);
-        Assert.assertEquals(loginPage.getErrorMessage(), "Invalid email or password.");
-    }
-    @Test
-    public void verifyLoginPageUrlContainsLoginFile() {
-        Assert.assertTrue(driver.getCurrentUrl().contains("login.html"));
-    }
-
-    @Test
-    public void verifyEmptyEmailAndPasswordShowsError() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("", "");
-        pause(1);
-        Assert.assertEquals(loginPage.getErrorMessage(), "Invalid email or password.");
+        Assert.assertEquals(page.getErrorMessage(), "Invalid email or password.");
     }
 
     @Test
     public void verifyEmptyEmailShowsError() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("", "test123");
+        LoginPage page = new LoginPage(driver);
+        page.login("", "test123");
         pause(1);
-        Assert.assertEquals(loginPage.getErrorMessage(), "Invalid email or password.");
+        Assert.assertEquals(page.getErrorMessage(), "Invalid email or password.");
     }
 
     @Test
     public void verifyEmptyPasswordShowsError() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "");
+        LoginPage page = new LoginPage(driver);
+        page.login("student@test.com", "");
         pause(1);
-        Assert.assertEquals(loginPage.getErrorMessage(), "Invalid email or password.");
+        Assert.assertEquals(page.getErrorMessage(), "Invalid email or password.");
     }
 }

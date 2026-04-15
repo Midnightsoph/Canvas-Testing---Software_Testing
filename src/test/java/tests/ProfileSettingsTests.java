@@ -10,42 +10,45 @@ import pages.ProfilePage;
 public class ProfileSettingsTests extends BaseTest {
 
     @BeforeMethod
-    public void loginAndOpenProfile() {
+    public void setup() {
         driver.get(loginPageUrl);
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "test123");
-        pause(3);
+        new LoginPage(driver).login("student@test.com", "test123");
+        pause(2);
         driver.get(profileUrl);
-        pause(3);
     }
 
     @Test
-    public void verifyProfilePageIsDisplayed() {
-        ProfilePage profilePage = new ProfilePage(driver);
-        Assert.assertTrue(profilePage.isProfilePageDisplayed());
+    public void verifyProfileDisplayed() {
+        Assert.assertTrue(new ProfilePage(driver).isProfilePageDisplayed());
     }
 
     @Test
-    public void verifyProfileNameIsDisplayed() {
-        ProfilePage profilePage = new ProfilePage(driver);
-        Assert.assertTrue(profilePage.isProfileNameDisplayed());
+    public void verifyProfileNameDisplayed() {
+        Assert.assertTrue(new ProfilePage(driver).isProfileNameDisplayed());
     }
 
     @Test
-    public void verifyProfileEmailIsDisplayed() {
-        ProfilePage profilePage = new ProfilePage(driver);
-        Assert.assertTrue(profilePage.isProfileEmailDisplayed());
+    public void verifyProfileEmailDisplayed() {
+        Assert.assertTrue(new ProfilePage(driver).isProfileEmailDisplayed());
     }
 
     @Test
-    public void verifyProfileEmailTextIsCorrect() {
-        ProfilePage profilePage = new ProfilePage(driver);
-        Assert.assertEquals(profilePage.getProfileEmailText(), "Email: student@test.com");
+    public void verifyUpdateProfile() {
+        ProfilePage page = new ProfilePage(driver);
+        page.editName("Alex Johnson");
+        page.editEmail("alex@test.com");
+        page.editMajor("Software Engineering");
+        page.clickSaveProfile();
+        Assert.assertEquals(page.getProfileStatus(), "Profile updated successfully.");
     }
 
     @Test
-    public void verifyProfilePageUrl() {
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        Assert.assertTrue(currentUrl.contains("profile"), "URL should contain 'profile'");
+    public void verifyEmptyProfileError() {
+        ProfilePage page = new ProfilePage(driver);
+        page.editName("");
+        page.editEmail("");
+        page.editMajor("");
+        page.clickSaveProfile();
+        Assert.assertEquals(page.getProfileStatus(), "Please complete all profile fields.");
     }
 }

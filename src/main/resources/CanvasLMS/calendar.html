@@ -7,19 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="checkLogin()">
-<nav>
-    <a id="navDashboard" href="dashboard.html">Dashboard</a>
-    <a id="navCourses" href="courses.html">Courses</a>
-    <a id="navAssignments" href="assignments.html">Assignments</a>
-    <a id="navCalendar" href="calendar.html">Calendar</a>
-    <a id="navInbox" href="inbox.html">Inbox</a>
-    <a id="navProfile" href="profile.html">Profile</a>
-    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
-</nav>
+<div class="app-layout">
+    <nav>
+        <div class="nav-brand">Canvas LMS</div>
+        <a id="navDashboard" href="dashboard.html">🏠 Dashboard</a>
+        <a id="navCourses" href="courses.html">📚 Courses</a>
+        <a id="navAssignments" href="assignments.html">📝 Assignments</a>
+        <a id="navCalendar" href="calendar.html">📅 Calendar</a>
+        <a id="navInbox" href="inbox.html">✉️ Inbox</a>
+        <a id="navProfile" href="profile.html">👤 Profile</a>
+        <a id="logoutLink" href="#" onclick="logout()">🚪 Logout</a>
+    </nav>
 
-<div class="page-container">
-    <h1 id="calendarTitle">Calendar</h1>
-    <p id="calendarText">Upcoming deadlines and class events will appear here.</p>
+    <div class="main-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1 id="calendarTitle">Calendar</h1>
+                <p id="calendarText">Keep track of due dates, meetings, and class events.</p>
+            </div>
+
+            <div class="card">
+                <h3>📅 Upcoming Events</h3>
+                <ul id="calendarEventList">
+                    <li>Monday: HCI project check-in</li>
+                    <li>Wednesday: Software Testing milestone due</li>
+                    <li>Friday: Advisor meeting at 2:00 PM</li>
+                </ul>
+            </div>
+
+            <div class="list-card" style="margin-top: 20px;">
+                <h3>Calendar Actions</h3>
+                <input type="text" id="calendarEventInput" placeholder="Enter a new event">
+                <button id="addCalendarEventButton" onclick="addCalendarEvent()">Add Event</button>
+                <button id="markImportantButton" onclick="markLastEventImportant()">Mark Last Event Important</button>
+                <button id="removeLastEventButton" onclick="removeLastEvent()">Remove Last Event</button>
+                <button id="clearCalendarButton" onclick="clearCalendarEvents()">Clear Events</button>
+                <p id="calendarStatus"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>

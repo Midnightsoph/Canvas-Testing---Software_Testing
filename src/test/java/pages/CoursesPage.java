@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class CoursesPage {
 
@@ -9,6 +10,12 @@ public class CoursesPage {
 
     By coursesTitle = By.id("coursesTitle");
     By coursesList = By.id("coursesList");
+    By courseSelect = By.id("courseSelect");
+    By openCourseDetailsButton = By.id("openCourseDetailsButton");
+    By favoriteCourseButton = By.id("favoriteCourseButton");
+    By clearCourseButton = By.id("clearCourseButton");
+    By courseDetails = By.id("courseDetails");
+    By favoriteCourseMessage = By.id("favoriteCourseMessage");
 
     public CoursesPage(WebDriver driver) {
         this.driver = driver;
@@ -27,12 +34,37 @@ public class CoursesPage {
                 && text.contains("operating systems");
     }
 
+    public int getCourseCount() {
+        String[] courses = driver.findElement(coursesList).getText().split("\n");
+        return courses.length;
+    }
+
     public String getCoursesText() {
         return driver.findElement(coursesList).getText();
     }
 
-    public int getCourseCount() {
-        String[] courses = driver.findElement(coursesList).getText().split("\n");
-        return courses.length;
+    public void selectCourse(String courseName) {
+        Select select = new Select(driver.findElement(courseSelect));
+        select.selectByVisibleText(courseName);
+    }
+
+    public void clickOpenCourseDetails() {
+        driver.findElement(openCourseDetailsButton).click();
+    }
+
+    public void clickFavoriteCourse() {
+        driver.findElement(favoriteCourseButton).click();
+    }
+
+    public void clickClearCourseSelection() {
+        driver.findElement(clearCourseButton).click();
+    }
+
+    public String getCourseDetailsText() {
+        return driver.findElement(courseDetails).getText();
+    }
+
+    public String getFavoriteCourseMessage() {
+        return driver.findElement(favoriteCourseMessage).getText();
     }
 }

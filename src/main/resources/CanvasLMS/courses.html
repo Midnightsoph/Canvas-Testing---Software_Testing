@@ -7,24 +7,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="checkLogin()">
-<nav>
-    <a id="navDashboard" href="dashboard.html">Dashboard</a>
-    <a id="navCourses" href="courses.html">Courses</a>
-    <a id="navAssignments" href="assignments.html">Assignments</a>
-    <a id="navCalendar" href="calendar.html">Calendar</a>
-    <a id="navInbox" href="inbox.html">Inbox</a>
-    <a id="navProfile" href="profile.html">Profile</a>
-    <a id="logoutLink" href="#" onclick="logout()">Logout</a>
-</nav>
+<div class="app-layout">
+    <nav>
+        <div class="nav-brand">Canvas LMS</div>
+        <a id="navDashboard" href="dashboard.html">🏠 Dashboard</a>
+        <a id="navCourses" href="courses.html">📚 Courses</a>
+        <a id="navAssignments" href="assignments.html">📝 Assignments</a>
+        <a id="navCalendar" href="calendar.html">📅 Calendar</a>
+        <a id="navInbox" href="inbox.html">✉️ Inbox</a>
+        <a id="navProfile" href="profile.html">👤 Profile</a>
+        <a id="logoutLink" href="#" onclick="logout()">🚪 Logout</a>
+    </nav>
 
-<div class="page-container">
-    <ul id="coursesList">
-        <li>Human Computer Interaction</li>
-        <li>Data Engineering</li>
-        <li>Software Testing</li>
-        <li>Computer Security</li>
-        <li>Operating Systems</li>
-    </ul>
+    <div class="main-content">
+        <div class="page-container">
+            <div class="page-header">
+                <h1 id="coursesTitle">Courses</h1>
+                <p>View your current enrolled classes for the semester.</p>
+            </div>
+
+            <div class="list-card">
+                <ul id="coursesList">
+                    <li>Human Computer Interaction</li>
+                    <li>Data Engineering</li>
+                    <li>Software Testing</li>
+                    <li>Computer Security</li>
+                    <li>Operating Systems</li>
+                </ul>
+            </div>
+
+            <div class="list-card" style="margin-top: 20px;">
+                <h3>Course Actions</h3>
+
+                <select id="courseSelect" style="width:100%; padding:12px; border-radius:10px; border:1px solid #c9d7ea; margin-bottom:12px;">
+                    <option value="">Select a course</option>
+                    <option value="Human Computer Interaction">Human Computer Interaction</option>
+                    <option value="Data Engineering">Data Engineering</option>
+                    <option value="Software Testing">Software Testing</option>
+                    <option value="Computer Security">Computer Security</option>
+                    <option value="Operating Systems">Operating Systems</option>
+                </select>
+
+                <button id="openCourseDetailsButton" onclick="openCourseDetails()">Open Course Details</button>
+                <button id="favoriteCourseButton" onclick="favoriteCourse()" style="margin-top:10px;">Add Favorite Course</button>
+                <button id="clearCourseButton" onclick="clearCourseSelection()" style="margin-top:10px;">Clear Selection</button>
+
+                <p id="courseDetails"></p>
+                <p id="favoriteCourseMessage"></p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="script.js"></script>

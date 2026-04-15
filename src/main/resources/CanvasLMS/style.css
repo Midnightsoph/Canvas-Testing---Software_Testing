@@ -1,69 +1,104 @@
+/* Reset */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
     margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
 }
 
-.login-container, .page-container {
-    width: 450px;
-    margin: 60px auto;
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-input {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    font-size: 16px;
-}
-
-button {
-    width: 95%;
-    padding: 12px;
-    background-color: #b31b1b;
-    color: white;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #8f1515;
-}
-
-#error-message {
-    color: red;
-    margin-top: 12px;
-}
-
+/* Top Navbar */
 nav {
-    background-color: #b31b1b;
-    padding: 15px;
+    background-color: #c1121f;
+    padding: 14px;
     text-align: center;
+    color: white;
+    font-weight: bold;
 }
 
 nav a {
     color: white;
-    text-decoration: none;
     margin: 0 12px;
-    font-weight: bold;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-ul {
-    text-align: left;
-    padding-left: 40px;
+nav a:hover {
+    text-decoration: underline;
 }
 
-.card {
-    margin-top: 15px;
-    padding: 15px;
-    border: 1px solid #ddd;
+/* Login Page Styling */
+.login-container {
+    width: 350px;
+    margin: 100px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    color: #c1121f;
+    margin-bottom: 10px;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
     border-radius: 8px;
-    text-align: left;
+    border: 1px solid #ccc;
+}
+
+/* Button */
+.login-container button {
+    width: 95%;
+    padding: 10px;
+    background-color: #c1121f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-container button:hover {
+    background-color: #a30f1a;
+}
+
+/* Dashboard / Pages */
+.main-content {
+    padding: 30px;
+}
+
+.page-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+}
+
+/* Grid for dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 }

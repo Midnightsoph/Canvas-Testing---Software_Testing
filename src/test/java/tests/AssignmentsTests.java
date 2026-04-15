@@ -10,43 +10,50 @@ import pages.LoginPage;
 public class AssignmentsTests extends BaseTest {
 
     @BeforeMethod
-    public void loginAndOpenAssignments() {
+    public void setup() {
         driver.get(loginPageUrl);
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "test123");
+        new LoginPage(driver).login("student@test.com", "test123");
         pause(3);
         driver.get(assignmentsUrl);
         pause(3);
     }
 
     @Test
-    public void verifyAssignmentsPageIsDisplayed() {
-        AssignmentsPage assignmentsPage = new AssignmentsPage(driver);
-        Assert.assertTrue(assignmentsPage.isAssignmentsPageDisplayed());
+    public void verifyAssignmentsPageDisplayed() {
+        Assert.assertTrue(new AssignmentsPage(driver).isAssignmentsPageDisplayed());
     }
 
     @Test
-    public void verifyAssignmentsAreDisplayed() {
-        AssignmentsPage assignmentsPage = new AssignmentsPage(driver);
-        Assert.assertTrue(assignmentsPage.areAssignmentsDisplayed());
+    public void verifyAssignmentsListContainsSoftwareTesting() {
+        Assert.assertTrue(new AssignmentsPage(driver).getAssignmentsText().contains("Software Testing Final Project"));
     }
 
     @Test
-    public void verifyAssignmentsContainSoftwareTestingProject() {
-        AssignmentsPage assignmentsPage = new AssignmentsPage(driver);
-        Assert.assertTrue(assignmentsPage.getAssignmentsText().contains("Software Testing Project"));
+    public void verifyUserCanSubmitSelectedAssignment() {
+        AssignmentsPage page = new AssignmentsPage(driver);
+        page.selectAssignment("Software Testing Final Project");
+        page.enterAssignmentText("My final project submission");
+        page.clickSubmitAssignment();
+        pause(2);
+        Assert.assertEquals(page.getAssignmentMessage(), "Assignment submitted successfully.");
     }
 
     @Test
-    public void verifyAssignmentsListIsNotEmpty() {
-        AssignmentsPage assignmentsPage = new AssignmentsPage(driver);
-        String text = assignmentsPage.getAssignmentsText();
-        Assert.assertFalse(text.isEmpty(), "Assignments list should not be empty");
+    public void verifyUserCanMarkAssignmentComplete() {
+        AssignmentsPage page = new AssignmentsPage(driver);
+        page.selectAssignment("Operating Systems Process Analysis");
+        page.clickMarkComplete();
+        pause(2);
+        Assert.assertEquals(page.getAssignmentMessage(), "Operating Systems Process Analysis marked as complete.");
     }
 
     @Test
-    public void verifyAssignmentsPageUrl() {
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        Assert.assertTrue(currentUrl.contains("assignments"), "URL should contain 'assignments'");
+    public void verifyUserCanClearAssignmentForm() {
+        AssignmentsPage page = new AssignmentsPage(driver);
+        page.selectAssignment("HCI Usability Review");
+        page.enterAssignmentText("Draft submission");
+        page.clickClearAssignmentForm();
+        pause(2);
+        Assert.assertEquals(page.getAssignmentMessage(), "Assignment form cleared.");
     }
 }

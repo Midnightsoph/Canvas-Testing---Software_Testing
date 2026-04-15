@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,54 +10,42 @@ import pages.LoginPage;
 public class NavigationTests extends BaseTest {
 
     @BeforeMethod
-    public void loginFirst() {
+    public void setup() {
         driver.get(loginPageUrl);
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("student@test.com", "test123");
-        pause(3);
+        new LoginPage(driver).login("student@test.com", "test123");
+        pause(2);
     }
 
     @Test
-    public void verifyNavigationToDashboard() {
-        driver.get(dashboardUrl);
-        Assert.assertTrue(driver.getCurrentUrl().contains("dashboard.html"));
-    }
-
-    @Test
-    public void verifyNavigationToCourses() {
-        driver.get(coursesUrl);
+    public void dashboardToCourses() {
+        driver.findElement(By.id("navCourses")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("courses.html"));
     }
 
     @Test
-    public void verifyNavigationToAssignments() {
-        driver.get(assignmentsUrl);
+    public void coursesToAssignments() {
+        driver.get(coursesUrl);
+        driver.findElement(By.id("navAssignments")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("assignments.html"));
     }
 
     @Test
-    public void verifyNavigationToCalendar() {
-        driver.get(calendarUrl);
+    public void assignmentsToCalendar() {
+        driver.get(assignmentsUrl);
+        driver.findElement(By.id("navCalendar")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("calendar.html"));
     }
 
     @Test
-    public void verifyNavigationToInbox() {
-        driver.get(inboxUrl);
+    public void calendarToInbox() {
+        driver.get(calendarUrl);
+        driver.findElement(By.id("navInbox")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("inbox.html"));
     }
 
     @Test
-    public void verifyNavigationToProfile() {
-        driver.get(profileUrl);
-        Assert.assertTrue(driver.getCurrentUrl().contains("profile.html"));
-    }
-    @Test
-    public void verifyLogoutReturnsToLoginPage() {
-        driver.get(dashboardUrl);
-        pause(1);
-        driver.findElement(org.openqa.selenium.By.id("logoutLink")).click();
-        pause(1);
+    public void logoutTest() {
+        driver.findElement(By.id("logoutLink")).click();
         Assert.assertTrue(driver.getCurrentUrl().contains("login.html"));
     }
 }

@@ -21,31 +21,37 @@ public class CoursesTests extends BaseTest {
 
     @Test
     public void verifyCoursesPageIsDisplayed() {
-        CoursesPage coursesPage = new CoursesPage(driver);
-        Assert.assertTrue(coursesPage.getCoursesText().length() > 0);
+        CoursesPage page = new CoursesPage(driver);
+        Assert.assertTrue(page.isCoursesPageDisplayed());
     }
 
     @Test
     public void verifyCollegeClassesAreDisplayed() {
-        CoursesPage coursesPage = new CoursesPage(driver);
-        Assert.assertTrue(coursesPage.areCollegeClassesDisplayed());
-    }
-
-    @Test
-    public void verifyCoursesListContainsOperatingSystems() {
-        CoursesPage coursesPage = new CoursesPage(driver);
-        Assert.assertTrue(coursesPage.getCoursesText().contains("Operating Systems"));
+        CoursesPage page = new CoursesPage(driver);
+        Assert.assertTrue(page.areCollegeClassesDisplayed());
     }
 
     @Test
     public void verifyCourseCountIsFive() {
-        CoursesPage coursesPage = new CoursesPage(driver);
-        Assert.assertEquals(coursesPage.getCourseCount(), 5);
+        CoursesPage page = new CoursesPage(driver);
+        Assert.assertEquals(page.getCourseCount(), 5);
     }
 
     @Test
-    public void verifyCoursesPageUrl() {
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        Assert.assertTrue(currentUrl.contains("courses"), "URL should contain 'courses'");
+    public void verifyUserCanOpenSelectedCourseDetails() {
+        CoursesPage page = new CoursesPage(driver);
+        page.selectCourse("Software Testing");
+        page.clickOpenCourseDetails();
+        pause(1);
+        Assert.assertEquals(page.getCourseDetailsText(), "Opened details for Software Testing.");
+    }
+
+    @Test
+    public void verifyUserCanFavoriteSelectedCourse() {
+        CoursesPage page = new CoursesPage(driver);
+        page.selectCourse("Operating Systems");
+        page.clickFavoriteCourse();
+        pause(1);
+        Assert.assertEquals(page.getFavoriteCourseMessage(), "Operating Systems added to favorites.");
     }
 }
